@@ -1,0 +1,13 @@
+<template>
+  <div class="topmenu">
+    <ul class="topmenu__container">
+      <li class="topmenu__item"><a href="#" class="topmenu__link">Home</a></li>
+      <li class="topmenu__item"><a href="#" class="topmenu__link">Settings</a></li>
+      <li class="topmenu__item"><a href="#" class="topmenu__link">License</a></li>
+      <li class="topmenu__item"><a href="#" class="topmenu__link">Day left in trail</a></li>
+    </ul>
+  </div>
+</template>
+<style lang="scss">
+@import './topmenu.scss';
+</style>

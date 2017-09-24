@@ -10,11 +10,19 @@ global.jQuery = jQuery
 let Bootstrap = require('bootstrap')
 import 'bootstrap/dist/css/bootstrap.css'
 
-import Sidebar from './components/Sidebar/Sidebar.vue'
+import Sidebar from './components/sidebar/sidebar.vue'
+import Topmenu from './components/topmenu/topmenu.vue'
+import Header from './components/app-designer/list/header/header.vue'
+
+// firebase configuration
+let VueFire = require('vuefire')
+Vue.use(VueFire)
 
 Vue.config.productionTip = false
 
 Vue.component('app-sidebar', Sidebar)
+Vue.component('app-topmenu', Topmenu)
+Vue.component('app-designer-header', Header)
 
 /* eslint-disable no-new */
 new Vue({

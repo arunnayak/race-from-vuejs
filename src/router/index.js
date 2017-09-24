@@ -1,30 +1,41 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home/Home'
-import AppDesigner from '@/components/AppDesigner/AppDesigner'
-import AppGenerationPortal from '@/components/AppGenerationPortal/AppGenerationPortal'
-import Landing from '@/components/Landing/Landing'
+import home from '@/components/home/home'
+import appDesigner from '@/components/app-designer/app-designer'
+import appGenerationPortal from '@/components/app-generation-portal/app-generation-portal'
+import landing from '@/components/landing/landing'
+
+import list from '@/components/app-designer/list/list'
+import details from '@/components/app-designer/list/details/details'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
+      path: '/',
+      name: 'landing',
+      component: landing
+    }, {
       path: '/home',
-      name: 'Home',
-      component: Home
+      name: 'home',
+      component: home
     }, {
       path: '/app-designer',
-      name: 'AppDesigner',
-      component: AppDesigner
+      name: 'appdesigner',
+      component: appDesigner
     }, {
       path: '/app-generation-portal',
-      name: 'AppGenerationPortal',
-      component: AppGenerationPortal
+      name: 'appgenerationportal',
+      component: appGenerationPortal
     }, {
-      path: '/',
-      name: 'Landing',
-      component: Landing
+      path: '/app-designer/list',
+      name: 'list',
+      component: list
+    }, {
+      path: '/app-designer/list/configure',
+      name: 'details',
+      component: details
     }
   ]
 })

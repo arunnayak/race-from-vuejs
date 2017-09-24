@@ -1,30 +1,29 @@
 <template>
-  <div class="home">
+  <div class="app-portal">
     <div class="col-md-2 no-padding">
       <app-sidebar></app-sidebar>
     </div>
     <div class="col-md-10 no-padding">
-      <div class="home__content">
+      <div class="app-portal__cw">
         <app-topmenu></app-topmenu>
-        this is {{msg}}
+        <div class="app-portal__content">
+          this is {{msg}}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'home',
+  name: 'appGenerationPortal',
   data () {
     return {
-      msg: 'This is home'
+      msg: 'This is app generation portal'
     }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
+<style lang="scss">
+@import './app-portal.scss';
 </style>

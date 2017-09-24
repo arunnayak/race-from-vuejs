@@ -1,0 +1,18 @@
+.list{
+    &__apps-container{
+        margin-top: 50px;
+        padding-top: 20px;
+        box-shadow: 0px 2px 10px #ccc;
+    }
+    &__item-container{
+        padding: 20px 0 0;
+    }
+    &__item{
+        border-top: solid 1px #ccc;
+        padding: 15px 0;
+    }
+    &__item::after{
+        clear: both;
+    }
+}
+
