@@ -6,6 +6,7 @@ import router from './router'
 //  adding jquery
 import jQuery from 'jquery'
 global.jQuery = jQuery
+
 //  adding bootstrap
 let Bootstrap = require('bootstrap')
 import 'bootstrap/dist/css/bootstrap.css'
@@ -15,7 +16,7 @@ import Topmenu from './components/topmenu/topmenu.vue'
 import Header from './components/app-designer/list/header/header.vue'
 
 // firebase configuration
-let VueFire = require('vuefire')
+var VueFire = require('vuefire')
 Vue.use(VueFire)
 
 Vue.config.productionTip = false
