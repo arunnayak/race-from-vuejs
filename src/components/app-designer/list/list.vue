@@ -11,7 +11,37 @@
                 </div>
                 </div>
                 <div class="col-md-9">
-                    <button class="btn btn-primary pull-right">Create</button>
+                    <button class="btn btn-primary pull-right" id="show-modal" v-on:click="showModal">Create</button>
+                    <!--modal -->
+                    <modal name="create-app" :height="350" :resizable="true">
+                            <form id="form" v-on:submit.prevent="addItem">
+                                <div class="modal__container">
+                                    <div class="form-group">
+                                        <label for="itemName">App name</label>
+                                        <input type="text" class="form-control" required name="name" id="itemName" placeholder="Enter app name" v-model="newItem.name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="itemDesc">App description</label>
+                                        <input type="text" class="form-control" required name="description" id="itemDesc" placeholder="Enter app name" v-model="newItem.description" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="itemDesc">Launch Icon</label><br/>
+                                        <div v-if="!image">
+                                            <input type="file" v-on:change="onFileChange">
+                                        </div>
+                                        <div class="modal__logo" v-else>
+                                            <img v-on:click="removeImage" class="modal__logo-img" :src="image" />
+                                        </div>
+                                        <span v-if="image">Click on the image to upload new</span>
+                                    </div>
+                                </div>
+                                <div class="modal__buttons">
+                                    <input type="submit" value="Create app" class="btn btn-primary" />
+                                    <input type="submit" value="Cancel" class="btn btn-default" v-on:click="hideModal" />
+                                </div>
+                            </form>
+                    </modal>
+                <!--modal -->
                 </div>
             </div>
             <div class="list__item-container">
@@ -32,20 +62,13 @@
                         </div>
                     </div>
                 </div>
-                <form id="form" v-on:submit.prevent="addItem()">
-                    <label for="itemName">App name</label>
-                    <input type="text" class="form-control" required name="name" id="itemName" placeholder="Enter app name" v-model="newItem.name" />
-                    <label for="itemDesc">App description</label>
-                    <input type="text" class="form-control" required name="name" id="itemDesc" placeholder="Enter app name" v-model="newItem.description" />
-                    <hr/>
-                    <input type="submit" value="add" class="btn btn-primary" />
-                </form>
             </div>
             </div>
         </div>
     </section>
 </div>
 </template>
+
 <script>
 
 import Firebase from 'firebase'
@@ -60,6 +83,7 @@ let config = {
 let app = Firebase.initializeApp(config)
 let db = app.database()
 let itemsRef = db.ref('/items')
+let logo = ''
 
 export default {
   name: 'list',
@@ -71,8 +95,10 @@ export default {
       newItem: {
         name: '',
         description: '',
-        date: 'Mon 12, 2017, 8:59 PM'
-      }
+        date: 'Mon 12, 2017, 8:59 PM',
+        logo: logo
+      },
+      image: ''
     }
   },
   methods: {
@@ -80,13 +106,48 @@ export default {
       itemsRef.push(this.newItem)
       this.newItem.name = ''
       this.newItem.description = ''
+      this.newItem.logo = ''
+      this.image = ''
     },
     removeItem: function (item) {
       itemsRef.child(item['.key']).remove()
+    },
+    showModal: function () {
+      this.$modal.show('create-app')
+      this.$modal.resizable = true
+    },
+    hideModal: function () {
+      this.$modal.hide('create-app')
+      this.image = ''
+    },
+    /* eslint-disable no-unused-vars */
+    onFileChange (e) {
+      var files = e.target.files || e.dataTransfer.files
+      if (!files.length) {
+        return
+      }
+      this.createImage(files[0])
+    },
+    createImage (file) {
+      var image = new Image()
+      var reader = new FileReader()
+      var vm = this
+
+      reader.onload = (e) => {
+        vm.image = e.target.result
+        logo = vm.image
+        console.log(logo)
+      }
+      reader.readAsDataURL(file)
+    },
+    removeImage: function (e) {
+      this.image = ''
     }
+    /* eslint-enable no-unused-vars */
   }
 }
 </script>
 <style lang="scss">
 @import './list.scss';
+@import '../../../assets/scss/modal.scss';
 </style>

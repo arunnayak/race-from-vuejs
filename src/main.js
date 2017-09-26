@@ -19,6 +19,10 @@ import Header from './components/app-designer/list/header/header.vue'
 var VueFire = require('vuefire')
 Vue.use(VueFire)
 
+// modal window
+import VModal from 'vue-js-modal'
+Vue.use(VModal)
+
 Vue.config.productionTip = false
 
 Vue.component('app-sidebar', Sidebar)

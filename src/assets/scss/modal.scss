@@ -1,0 +1,20 @@
+.modal{
+    &__container{
+        padding: 20px;
+        height: 295px;
+        overflow: auto;
+    }
+    &__buttons{
+        text-align: right;
+        padding: 10px;
+        border-top: solid 1px #ccc;
+    }
+    &__logo{
+        width: 100px;
+        padding: 10px 0;
+        border: solid 1px #eee;
+    }
+    &__logo-img{
+        width: 100%;
+    }
+}
