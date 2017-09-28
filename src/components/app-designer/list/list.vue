@@ -32,6 +32,7 @@
                                         <div class="modal__logo" v-else>
                                             <img v-on:click="removeImage" class="modal__logo-img" :src="image" />
                                         </div>
+
                                         <span v-if="image">Click on the image to upload new</span>
                                     </div>
                                 </div>
@@ -48,7 +49,7 @@
                 <div class="list__item" v-for="item in items">
                     <div class="row">
                         <div class="col-md-1">
-                            <img src="https://secure.gravatar.com/avatar/9319b07509dc0bf003e35096b6f43d89?s=60&r=g&d=mm" alt="app icon" />
+                            <img v-if="item.logo" :src="item.logo" alt="app icon" />
                         </div>
                         <div class="col-md-9">
                             <a href="#app-designer/list/configure" class="apps__list-link"> {{item.name}} </a>
@@ -72,6 +73,10 @@
 <script>
 
 import Firebase from 'firebase'
+import Vue from 'vue'
+// firebase configuration
+var VueFire = require('vuefire')
+Vue.use(VueFire)
 
 let config = {
   apiKey: 'AIzaSyAkvSXEKIo9kOT2NldjljPj8kEtJoSL5Xg',
@@ -83,7 +88,6 @@ let config = {
 let app = Firebase.initializeApp(config)
 let db = app.database()
 let itemsRef = db.ref('/items')
-let logo = ''
 
 export default {
   name: 'list',
@@ -96,7 +100,7 @@ export default {
         name: '',
         description: '',
         date: 'Mon 12, 2017, 8:59 PM',
-        logo: logo
+        logo: 'https://secure.gravatar.com/avatar/9319b07509dc0bf003e35096b6f43d89?s=60&r=g&d=mm'
       },
       image: ''
     }
@@ -121,22 +125,20 @@ export default {
       this.image = ''
     },
     /* eslint-disable no-unused-vars */
-    onFileChange (e) {
+    onFileChange: function (e) {
       var files = e.target.files || e.dataTransfer.files
       if (!files.length) {
         return
       }
       this.createImage(files[0])
     },
-    createImage (file) {
+    createImage: function (file) {
       var image = new Image()
       var reader = new FileReader()
       var vm = this
 
       reader.onload = (e) => {
         vm.image = e.target.result
-        logo = vm.image
-        console.log(logo)
       }
       reader.readAsDataURL(file)
     },

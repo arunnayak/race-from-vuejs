@@ -23,6 +23,7 @@
     "vue": "^2.4.2",
     "vue-drag-and-drop-list": "^1.0.0",
     "vue-js-modal": "^1.2.11",
+    "vue-resize-split-pane": "0.0.5",
     "vue-router": "^2.7.0",
     "vue-splitpane": "^1.0.0",
     "vuefire": "^1.4.3"

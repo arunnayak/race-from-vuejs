@@ -15,10 +15,6 @@ import Sidebar from './components/sidebar/sidebar.vue'
 import Topmenu from './components/topmenu/topmenu.vue'
 import Header from './components/app-designer/list/header/header.vue'
 
-// firebase configuration
-var VueFire = require('vuefire')
-Vue.use(VueFire)
-
 // modal window
 import VModal from 'vue-js-modal'
 Vue.use(VModal)
